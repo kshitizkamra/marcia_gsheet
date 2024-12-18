@@ -106,7 +106,7 @@ with st.container(border=True) :
             db_settlement_all=pd.concat([db_settlement_final,db_settlement],ignore_index=True,sort=False)
             db_settlement_all.drop_duplicates(subset=['order_release_id','order_type'],inplace=True)
             settlement_bar.progress(3/4, text="Syncing Settlements - Updating Settelment data")
-            db_settlement_upload_new=pd.DataFrame()
+            # db_settlement_upload_new=pd.DataFrame()
 
             conn.clear(worksheet="settlement_upload")
             conn.update(worksheet="settlement",data=db_settlement_all)     
@@ -272,4 +272,5 @@ with st.container(border=True) :
             
 
         final_bar.progress(4/4,text="All syncing done - Happy Analysing")
+
 
