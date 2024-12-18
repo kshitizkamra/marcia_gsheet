@@ -180,10 +180,10 @@ with st.container(border=True) :
         db_sales_final=db_sales.merge(db_master,left_on=['sku_code'],right_on=['channel_product_id'])
         db_sales_final['seller_id']=db_sales_final['seller_id'].astype(str)
         final_bar.progress(2/4,text="Final Magic ")
-
-        db_data.drop(['order_status','fabric'],axis=1,inplace=True)
-        db_sales_final.drop(['fabric'],axis=1,inplace=True)
-
+        
+        db_data.drop(['order_status'],axis=1,inplace=True)
+        # db_sales_final.drop(['fabric'],axis=1,inplace=True)
+        db_sales_final.drop(['channel_y'],axis=1,inplace=True)
         conn.update(worksheet="final_data",data=db_data)
         conn.update(worksheet="final_sales",data=db_sales_final)
         
@@ -272,5 +272,4 @@ with st.container(border=True) :
             
 
         final_bar.progress(4/4,text="All syncing done - Happy Analysing")
-
 
